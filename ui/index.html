@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Download Tool</title>
+    <link rel="stylesheet" href="input.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>YouTube Download Tool</h1>
+      <form id="submitForm">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" />
+
+        <label for="fileName">Name the File:</label>
+        <input type="text" id="fileName" name="fileName" />
+
+        <label for="fileType">File Type:</label><br />
+        <input type="radio" id="mp3" name="fileType" value="mp3" />
+        <label for="mp3">MP3</label><br />
+        <input type="radio" id="mp4" name="fileType" value="mp4" />
+        <label for="mp4">MP4</label><br />
+
+        <!-- Dropdown menu for quality -->
+        <label for="quality">Quality:</label><br />
+        <select id="quality" name="quality">
+          <option value="highest">Highest</option>
+          <option value="highestaudio">Highest with Audio</option>
+        </select>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="../app.js"></script>
+  </body>
+</html>
