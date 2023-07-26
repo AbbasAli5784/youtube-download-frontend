@@ -15,14 +15,21 @@ submitForm.addEventListener("submit", async (e) => {
     quality: quality,
   };
 
-  let resp = await fetch(
-    "https://fathomless-dusk-76665-1719385a3cfc.herokuapp.com/download",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  fetch("https://fathomless-dusk-76665-1719385a3cfc.herokuapp.com/download", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.blob())
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName + "." + fileType;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
 });
