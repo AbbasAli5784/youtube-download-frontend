@@ -1,4 +1,6 @@
 let submitForm = document.getElementById("submitForm");
+let progressBar = document.getElementById("progressBar");
+let progressBarContainer = document.getElementById("progressBarContainer");
 
 submitForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -15,15 +17,18 @@ submitForm.addEventListener("submit", async (e) => {
     quality: quality,
   };
 
-  fetch("https://fathomless-dusk-76665-1719385a3cfc.herokuapp.com/download", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.blob())
-    .then((blob) => {
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "POST",
+    "https://fathomless-dusk-76665-1719385a3cfc.herokuapp.com/download",
+    true
+  );
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.responseType = "blob";
+
+  xhr.onload = function (e) {
+    if (this.status == 200) {
+      const blob = new Blob([this.response]);
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -31,5 +36,22 @@ submitForm.addEventListener("submit", async (e) => {
       document.body.appendChild(a);
       a.click();
       a.remove();
-    });
+    }
+
+    // Hide the progress bar after the download
+    progressBarContainer.style.display = "none";
+  };
+
+  // progress on transfers from the server to the client (downloads)
+  xhr.addEventListener("progress", function (event) {
+    if (event.lengthComputable) {
+      var percentComplete = (event.loaded / event.total) * 100;
+      progressBar.value = percentComplete;
+    }
+  });
+
+  // Show the progress bar before sending the request
+  progressBarContainer.style.display = "block";
+
+  xhr.send(JSON.stringify(data));
 });

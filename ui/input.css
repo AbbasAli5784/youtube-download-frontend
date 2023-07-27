@@ -61,3 +61,8 @@ button {
 button:hover {
   background-color: #555;
 }
+
+progress {
+  width: 100%;
+  height: 20px;
+}
