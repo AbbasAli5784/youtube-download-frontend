@@ -7,14 +7,14 @@ submitForm.addEventListener("submit", async (e) => {
 
   let url = document.getElementById("url").value;
   let fileName = document.getElementById("fileName").value;
-  let fileType = document.querySelector('input[name="fileType"]:checked').value;
-  let quality = document.getElementById("quality").value;
+
+  // Since you're not providing an option to the user, manually set fileType as 'mp3'
+  let fileType = "mp3";
 
   const data = {
     url: url,
     fileName: fileName,
     fileType: fileType,
-    quality: quality,
   };
 
   var xhr = new XMLHttpRequest();

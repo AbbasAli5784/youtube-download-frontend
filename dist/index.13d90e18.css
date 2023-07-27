@@ -62,4 +62,35 @@ button:hover {
   background-color: #555;
 }
 
+progress {
+  width: 100%;
+  height: 20px;
+}
+
+.radio-item {
+  justify-content: space-between;
+  align-items: center;
+  width: 10px;
+  display: flex;
+}
+
+input[type="radio"] {
+  position: relative;
+  top: 3px;
+}
+
+.title {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  display: flex;
+}
+
+.title img {
+  align-self: flex-start;
+  width: auto;
+  height: 50px;
+}
+
 /*# sourceMappingURL=index.13d90e18.css.map */
